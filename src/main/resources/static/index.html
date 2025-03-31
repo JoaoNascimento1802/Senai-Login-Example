@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro e Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h2 id="form-title">Cadastro</h2>
+        <form id="form">
+            <div id="name-field">
+                <label for="name">Nome</label>
+                <input type="text" id="name" placeholder="Digite seu nome">
+            </div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Digite seu e-mail" required>
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Digite sua senha" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="toggle-text">Já tem uma conta? <a href="#" id="toggle-link">Faça login</a></p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
