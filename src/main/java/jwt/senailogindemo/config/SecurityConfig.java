@@ -39,7 +39,9 @@ public class SecurityConfig {
                         .requestMatchers("/auth/welcome", "/auth/addNewUser", "/auth/generateToken").permitAll()
                         .requestMatchers("/auth/user/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/auth/admin/**").hasAuthority("ROLE_ADMIN")
-                        .anyRequest().authenticated())
+                        .requestMatchers("/**").permitAll() // Permite acesso a qualquer arquivo estático e ao HTML
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(applicationContext.getBean(JwtAuthFilter.class), UsernamePasswordAuthenticationFilter.class);
@@ -55,7 +57,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(applicationContext.getBean(UserDetailsService.class)); // Get UserDetailsService from context
+        authenticationProvider.setUserDetailsService(applicationContext.getBean(UserDetailsService.class));
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
